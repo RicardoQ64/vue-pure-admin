@@ -1,9 +1,8 @@
-// 按需引入element-plus（该方法稳定且明确。当然也支持：https://element-plus.org/zh-CN/guide/quickstart.html#%E6%8C%89%E9%9C%80%E5%AF%BC%E5%85%A5）
+// 按需引入element-plus（
 import type { App, Component } from "vue";
 import {
   /**
-   * 为了方便演示平台将 element-plus 导出的所有组件引入，实际使用中如果你没用到哪个组件，将其注释掉就行
-   * 导出来源：https://github.com/element-plus/element-plus/blob/dev/packages/element-plus/component.ts#L111-L211
+   * 为方便将 element-plus 导出的所有组件引入
    * */
   ElAffix,
   ElAlert,
@@ -108,10 +107,6 @@ import {
   ElTour,
   ElTourStep,
   ElSegmented,
-  /**
-   * 为了方便演示平台将 element-plus 导出的所有插件引入，实际使用中如果你没用到哪个插件，将其注释掉就行
-   * 导出来源：https://github.com/element-plus/element-plus/blob/dev/packages/element-plus/plugin.ts#L11-L16
-   * */
   ElLoading, // v-loading 指令
   ElInfiniteScroll, // v-infinite-scroll 指令
   ElPopoverDirective, // v-popover 指令

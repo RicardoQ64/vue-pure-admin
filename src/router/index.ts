@@ -2,7 +2,6 @@ import "@/utils/sso";
 import Cookies from "js-cookie";
 import { getConfig } from "@/config";
 import NProgress from "@/utils/progress";
-import { transformI18n } from "@/plugins/i18n";
 import { buildHierarchyTree } from "@/utils/tree";
 import remainingRouter from "./modules/remaining";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
@@ -33,8 +32,6 @@ import {
 } from "@/utils/auth";
 
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
- * 如何匹配所有文件请看：https://github.com/mrmlnc/fast-glob#basic-syntax
- * 如何排除文件请看：https://cn.vitejs.dev/guide/features.html#negative-patterns
  */
 const modules: Record<string, any> = import.meta.glob(
   ["./modules/**/*.ts", "!./modules/**/remaining.ts"],
@@ -122,8 +119,8 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       if (!item.meta.title) return "";
       const Title = getConfig().Title;
       if (Title)
-        document.title = `${transformI18n(item.meta.title)} | ${Title}`;
-      else document.title = transformI18n(item.meta.title);
+        document.title = `${item.meta.title} | ${Title}`;
+      else document.title = item.meta.title;
     });
   }
   /** 如果已经登录并存在登录信息后不能跳转到路由白名单，而是继续保持在当前页面 */

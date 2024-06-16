@@ -3,7 +3,6 @@ import type { CopyEl, OptimizeOptions, RippleOptions } from "@/directives";
 
 declare module "vue" {
   export interface ComponentCustomProperties {
-    /** `Loading` 动画加载指令，具体看：https://element-plus.org/zh-CN/component/loading.html#%E6%8C%87%E4%BB%A4 */
     vLoading: Directive<Element, boolean>;
     /** 按钮权限指令 */
     vAuth: Directive<HTMLElement, string | Array<string>>;

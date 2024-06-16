@@ -14,4 +14,3 @@ const DataDialog = withInstall(dataDialog);
 
 export { Control, NodePanel, DataDialog };
 
-// LogicFlow流程图文档：http://logic-flow.org/

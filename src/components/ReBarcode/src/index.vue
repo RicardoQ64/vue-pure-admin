@@ -15,14 +15,12 @@ const props = defineProps({
     type: String,
     default: null
   },
-  // 完整配置 https://github.com/lindell/JsBarcode/wiki/Options
   options: {
     type: Object,
     default() {
       return {};
     }
   },
-  // type 相当于 options.format，如果 type 和 options.format 同时存在，type 值优先；
   type: {
     type: String,
     default: "CODE128"

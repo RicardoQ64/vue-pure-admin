@@ -3,7 +3,6 @@ import { ref } from "vue";
 import ReCol from "@/components/ReCol";
 import { formRules } from "./utils/rule";
 import { FormProps } from "./utils/types";
-import { transformI18n } from "@/plugins/i18n";
 import { IconSelect } from "@/components/ReIcon";
 import Segmented from "@/components/ReSegmented";
 import ReAnimateSelector from "@/components/ReAnimateSelector";
@@ -88,7 +87,7 @@ defineExpose({ getRef });
             placeholder="请选择上级菜单"
           >
             <template #default="{ node, data }">
-              <span>{{ transformI18n(data.title) }}</span>
+              <span>{{ data.title }}</span>
               <span v-if="!node.isLeaf"> ({{ data.children.length }}) </span>
             </template>
           </el-cascader>

@@ -23,7 +23,6 @@ import { type menuType, routerArrays } from "@/layout/types";
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags";
 import { usePermissionStoreHook } from "@/store/modules/permission";
 const IFrame = () => import("@/layout/frame.vue");
-// https://cn.vitejs.dev/guide/features.html#glob-import
 const modulesRoutes = import.meta.glob("/src/views/**/*.{vue,tsx}");
 
 // 动态路由
@@ -239,7 +238,6 @@ function formatFlatteningRoutes(routesList: RouteRecordRaw[]) {
 
 /**
  * 一维数组处理成多级嵌套数组（三级及以上的路由全部拍成二级，keep-alive 只支持到二级缓存）
- * https://github.com/pure-admin/vue-pure-admin/issues/67
  * @param routesList 处理后的一维路由菜单数组
  * @returns 返回将一维数组重新处理成规定路由的格式
  */
@@ -327,9 +325,9 @@ function addAsyncRoutes(arrRoutes: Array<RouteRecordRaw>) {
   return arrRoutes;
 }
 
-/** 获取路由历史模式 https://next.router.vuejs.org/zh/guide/essentials/history-mode.html */
+/** 获取路由历史模式 */
 function getHistoryMode(routerHistory): RouterHistory {
-  // len为1 代表只有历史模式 为2 代表历史模式中存在base参数 https://next.router.vuejs.org/zh/api/#%E5%8F%82%E6%95%B0-1
+  // len为1 代表只有历史模式 为2 代表历史模式中存在base参数
   const historyMode = routerHistory.split(",");
   const leftMode = historyMode[0];
   const rightMode = historyMode[1];

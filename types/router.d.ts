@@ -36,8 +36,6 @@ declare global {
     transition?: {
       /**
        * @description 当前路由动画效果
-       * @see {@link https://next.router.vuejs.org/guide/advanced/transitions.html#transitions}
-       * @see animate.css {@link https://animate.style}
        */
       name?: string;
       /** 进场动画 */
@@ -102,7 +100,6 @@ declare global {
   }
 }
 
-// https://router.vuejs.org/zh/guide/advanced/meta.html#typescript
 declare module "vue-router" {
   interface RouteMeta extends CustomizeRouteMeta {}
 }

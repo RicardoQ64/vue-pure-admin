@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from "vue-i18n";
 import Motion from "./utils/motion";
 import { useRouter } from "vue-router";
 import { message } from "@/utils/message";
@@ -9,7 +8,6 @@ import { debounce } from "@pureadmin/utils";
 import { useNav } from "@/layout/hooks/useNav";
 import { useEventListener } from "@vueuse/core";
 import type { FormInstance } from "element-plus";
-import { $t, transformI18n } from "@/plugins/i18n";
 import { operates, thirdParty } from "./utils/enums";
 import { useLayout } from "@/layout/hooks/useLayout";
 import LoginPhone from "./components/LoginPhone.vue";
@@ -22,14 +20,11 @@ import { bg, avatar, illustration } from "./utils/static";
 import { ReImageVerify } from "@/components/ReImageVerify";
 import { ref, toRaw, reactive, watch, computed } from "vue";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
-import { useTranslationLang } from "@/layout/hooks/useTranslationLang";
 import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
 
 import dayIcon from "@/assets/svg/day.svg?component";
 import darkIcon from "@/assets/svg/dark.svg?component";
-import globalization from "@/assets/svg/globalization.svg?component";
 import Lock from "@iconify-icons/ri/lock-fill";
-import Check from "@iconify-icons/ep/check";
 import User from "@iconify-icons/ri/user-3-fill";
 import Info from "@iconify-icons/ri/information-line";
 
@@ -48,13 +43,11 @@ const currentPage = computed(() => {
   return useUserStoreHook().currentPage;
 });
 
-const { t } = useI18n();
 const { initStorage } = useLayout();
 initStorage();
 const { dataTheme, overallStyle, dataThemeChange } = useDataThemeChange();
 dataThemeChange(overallStyle.value);
-const { title, getDropdownItemStyle, getDropdownItemClass } = useNav();
-const { locale, translationCh, translationEn } = useTranslationLang();
+const { title } = useNav();
 
 const ruleForm = reactive({
   username: "admin",
@@ -77,12 +70,12 @@ const onLogin = async (formEl: FormInstance | undefined) => {
               router
                 .push(getTopMenu(true).path)
                 .then(() => {
-                  message(t("login.pureLoginSuccess"), { type: "success" });
+                  message("登录成功", { type: "success" });
                 })
                 .finally(() => (disabled.value = false));
             });
           } else {
-            message(t("login.pureLoginFail"), { type: "error" });
+            message("登录失败", { type: "error" });
           }
         })
         .finally(() => (loading.value = false));
@@ -124,38 +117,6 @@ watch(loginDay, value => {
         :inactive-icon="darkIcon"
         @change="dataThemeChange"
       />
-      <!-- 国际化 -->
-      <el-dropdown trigger="click">
-        <globalization
-          class="hover:text-primary hover:!bg-[transparent] w-[20px] h-[20px] ml-1.5 cursor-pointer outline-none duration-300"
-        />
-        <template #dropdown>
-          <el-dropdown-menu class="translation">
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'zh')"
-              :class="['dark:!text-white', getDropdownItemClass(locale, 'zh')]"
-              @click="translationCh"
-            >
-              <IconifyIconOffline
-                v-show="locale === 'zh'"
-                class="check-zh"
-                :icon="Check"
-              />
-              简体中文
-            </el-dropdown-item>
-            <el-dropdown-item
-              :style="getDropdownItemStyle(locale, 'en')"
-              :class="['dark:!text-white', getDropdownItemClass(locale, 'en')]"
-              @click="translationEn"
-            >
-              <span v-show="locale === 'en'" class="check-en">
-                <IconifyIconOffline :icon="Check" />
-              </span>
-              English
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
     </div>
     <div class="login-container">
       <div class="img">
@@ -184,7 +145,7 @@ watch(loginDay, value => {
                 :rules="[
                   {
                     required: true,
-                    message: transformI18n($t('login.pureUsernameReg')),
+                    message: '请输入账号',
                     trigger: 'blur'
                   }
                 ]"
@@ -193,7 +154,7 @@ watch(loginDay, value => {
                 <el-input
                   v-model="ruleForm.username"
                   clearable
-                  :placeholder="t('login.pureUsername')"
+                  placeholder="账号"
                   :prefix-icon="useRenderIcon(User)"
                 />
               </el-form-item>
@@ -205,7 +166,7 @@ watch(loginDay, value => {
                   v-model="ruleForm.password"
                   clearable
                   show-password
-                  :placeholder="t('login.purePassword')"
+                  placeholder="密码"
                   :prefix-icon="useRenderIcon(Lock)"
                 />
               </el-form-item>
@@ -216,7 +177,7 @@ watch(loginDay, value => {
                 <el-input
                   v-model="ruleForm.verifyCode"
                   clearable
-                  :placeholder="t('login.pureVerifyCode')"
+                  placeholder="验证码"
                   :prefix-icon="useRenderIcon('ri:shield-keyhole-line')"
                 >
                   <template v-slot:append>
@@ -244,10 +205,11 @@ watch(loginDay, value => {
                         <option value="7">7</option>
                         <option value="30">30</option>
                       </select>
-                      {{ t("login.pureRemember") }}
+                      天内免登录
                       <IconifyIconOffline
                         v-tippy="{
-                          content: t('login.pureRememberInfo'),
+                          content:
+                            '勾选并登录后，规定天数内无需输入用户名和密码会自动登入系统',
                           placement: 'top'
                         }"
                         :icon="Info"
@@ -260,7 +222,7 @@ watch(loginDay, value => {
                     type="primary"
                     @click="useUserStoreHook().SET_CURRENTPAGE(4)"
                   >
-                    {{ t("login.pureForget") }}
+                    忘记密码?
                   </el-button>
                 </div>
                 <el-button
@@ -271,7 +233,7 @@ watch(loginDay, value => {
                   :disabled="disabled"
                   @click="onLogin(ruleFormRef)"
                 >
-                  {{ t("login.pureLogin") }}
+                  登录
                 </el-button>
               </el-form-item>
             </Motion>
@@ -286,7 +248,7 @@ watch(loginDay, value => {
                     size="default"
                     @click="useUserStoreHook().SET_CURRENTPAGE(index + 1)"
                   >
-                    {{ t(item.title) }}
+                    {{ item.title }}
                   </el-button>
                 </div>
               </el-form-item>
@@ -296,15 +258,13 @@ watch(loginDay, value => {
           <Motion v-if="currentPage === 0" :delay="350">
             <el-form-item>
               <el-divider>
-                <p class="text-gray-500 text-xs">
-                  {{ t("login.pureThirdLogin") }}
-                </p>
+                <p class="text-gray-500 text-xs">第三方登录</p>
               </el-divider>
               <div class="w-full flex justify-evenly">
                 <span
                   v-for="(item, index) in thirdParty"
                   :key="index"
-                  :title="t(item.title)"
+                  :title="item.title"
                 >
                   <IconifyIconOnline
                     :icon="`ri:${item.icon}-fill`"

@@ -2,7 +2,6 @@ import editForm from "../form.vue";
 import { handleTree } from "@/utils/tree";
 import { message } from "@/utils/message";
 import { getMenuList } from "@/api/system";
-import { transformI18n } from "@/plugins/i18n";
 import { addDialog } from "@/components/ReDialog";
 import { reactive, ref, onMounted, h } from "vue";
 import type { FormItemProps } from "../utils/types";
@@ -43,7 +42,7 @@ export function useMenu() {
               style: { paddingTop: "1px" }
             })}
           </span>
-          <span>{transformI18n(row.title)}</span>
+          <span>{row.title}</span>
         </>
       )
     },
@@ -111,7 +110,7 @@ export function useMenu() {
     if (!isAllEmpty(form.title)) {
       // 前端搜索菜单名称
       newData = newData.filter(item =>
-        transformI18n(item.title).includes(form.title)
+        item.title.includes(form.title)
       );
     }
     dataList.value = handleTree(newData); // 处理成树结构
@@ -124,7 +123,6 @@ export function useMenu() {
     if (!treeList || !treeList.length) return;
     const newTreeList = [];
     for (let i = 0; i < treeList.length; i++) {
-      treeList[i].title = transformI18n(treeList[i].title);
       formatHigherMenuOptions(treeList[i].children);
       newTreeList.push(treeList[i]);
     }
@@ -171,7 +169,7 @@ export function useMenu() {
         const curData = options.props.formInline as FormItemProps;
         function chores() {
           message(
-            `您${title}了菜单名称为${transformI18n(curData.title)}的这条数据`,
+            `您${title}了菜单名称为${curData.title}的这条数据`,
             {
               type: "success"
             }
@@ -197,7 +195,7 @@ export function useMenu() {
   }
 
   function handleDelete(row) {
-    message(`您删除了菜单名称为${transformI18n(row.title)}的这条数据`, {
+    message(`您删除了菜单名称为${row.title}的这条数据`, {
       type: "success"
     });
     onSearch();

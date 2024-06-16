@@ -14,7 +14,7 @@ declare global {
       version: string;
       engines: {
         node: string;
-        pnpm: string;
+        npm: string;
       };
       dependencies: Recordable<string>;
       devDependencies: Recordable<string>;
@@ -61,7 +61,6 @@ declare global {
 
   /**
    * 全局自定义环境变量的类型声明
-   * @see {@link https://pure-admin.github.io/pure-admin-doc/pages/config/#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE}
    */
   interface ViteEnv {
     VITE_PORT: number;
@@ -79,7 +78,6 @@ declare global {
 
   /**
    * 对应 `public/platform-config.json` 文件的类型声明
-   * @see {@link https://pure-admin.github.io/pure-admin-doc/pages/config/#platform-config-json}
    */
   interface PlatformConfigs {
     Version?: string;
@@ -120,7 +118,6 @@ declare global {
 
   /**
    * 与 `PlatformConfigs` 类型不同，这里是缓存到浏览器本地存储的类型声明
-   * @see {@link https://pure-admin.github.io/pure-admin-doc/pages/config/#platform-config-json}
    */
   interface StorageConfigs {
     version?: string;
