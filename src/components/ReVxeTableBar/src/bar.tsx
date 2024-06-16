@@ -1,4 +1,5 @@
 import Sortable from "sortablejs";
+import { transformI18n } from "@/plugins/i18n";
 import { useEpThemeStoreHook } from "@/store/modules/epTheme";
 import { delay, cloneDeep, getKeyList } from "@pureadmin/utils";
 import {
@@ -208,13 +209,14 @@ export default defineComponent({
 
     const isFixedColumn = (title: string) => {
       return dynamicColumns.value.filter(
-        item => item.title === title
+        item => transformI18n(item.title) === transformI18n(title)
       )[0].fixed
         ? true
         : false;
     };
 
     const rendTippyProps = (content: string) => {
+      // https://vue-tippy.netlify.app/props
       return {
         content,
         offset: [0, 18],
@@ -333,10 +335,10 @@ export default defineComponent({
                                 onChange={reloadColumn}
                               >
                                 <span
-                                  title={item}
+                                  title={transformI18n(item)}
                                   class="inline-block w-[120px] truncate hover:text-text_color_primary"
                                 >
-                                  {item}
+                                  {transformI18n(item)}
                                 </span>
                               </el-checkbox>
                             </div>

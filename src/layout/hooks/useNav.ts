@@ -1,11 +1,12 @@
 import { storeToRefs } from "pinia";
 import { getConfig } from "@/config";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import { emitter } from "@/utils/mitt";
 import Avatar from "@/assets/user.jpg";
 import { getTopMenu } from "@/router/utils";
 import { useFullscreen } from "@vueuse/core";
 import type { routeMetaType } from "../types";
+import { transformI18n } from "@/plugins/i18n";
 import { router, remainingPaths } from "@/router";
 import { computed, type CSSProperties } from "vue";
 import { useAppStoreHook } from "@/store/modules/app";
@@ -16,10 +17,10 @@ import { usePermissionStoreHook } from "@/store/modules/permission";
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
 
-const errorInfo = "当前路由配置不正确，请检查配置";
+const errorInfo =
+  "The current routing configuration is incorrect, please check the configuration";
 
 export function useNav() {
-  const route = useRoute();
   const pureApp = useAppStoreHook();
   const routers = useRouter().options.routes;
   const { isFullscreen, toggle } = useFullscreen();
@@ -91,8 +92,8 @@ export function useNav() {
   /** 动态title */
   function changeTitle(meta: routeMetaType) {
     const Title = getConfig().Title;
-    if (Title) document.title = `${meta.title} | ${Title}`;
-    else document.title = meta.title;
+    if (Title) document.title = `${transformI18n(meta.title)} | ${Title}`;
+    else document.title = transformI18n(meta.title);
   }
 
   /** 退出登录 */
@@ -147,7 +148,6 @@ export function useNav() {
   }
 
   return {
-    route,
     title,
     device,
     layout,

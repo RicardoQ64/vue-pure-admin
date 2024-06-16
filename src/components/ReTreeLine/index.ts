@@ -1,3 +1,4 @@
+// 参考https://www.npmjs.com/package/element-tree-line (主要是替换需要通过函数传参的方式去注册组件，并添加更好的类型支持，并移除this.$scopedSlots，在3.x中,将所有this.$scopedSlots替换为this.$slots)
 import "./index.scss";
 import { isFunction } from "@pureadmin/utils";
 import { type PropType, h, defineComponent } from "vue";

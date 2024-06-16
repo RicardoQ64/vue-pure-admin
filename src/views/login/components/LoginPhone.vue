@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { ref, reactive } from "vue";
 import Motion from "../utils/motion";
 import { message } from "@/utils/message";
 import { phoneRules } from "../utils/rule";
 import type { FormInstance } from "element-plus";
+import { $t, transformI18n } from "@/plugins/i18n";
 import { useVerifyCode } from "../utils/verifyCode";
 import { useUserStoreHook } from "@/store/modules/user";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import Iphone from "@iconify-icons/ep/iphone";
 
+const { t } = useI18n();
 const loading = ref(false);
 const ruleForm = reactive({
   phone: "",
@@ -24,7 +27,7 @@ const onLogin = async (formEl: FormInstance | undefined) => {
     if (valid) {
       // 模拟登录请求，需根据实际开发进行修改
       setTimeout(() => {
-        message("登录成功", {
+        message(transformI18n($t("login.pureLoginSuccess")), {
           type: "success"
         });
         loading.value = false;
@@ -48,7 +51,7 @@ function onBack() {
         <el-input
           v-model="ruleForm.phone"
           clearable
-          placeholder="手机号码"
+          :placeholder="t('login.purePhone')"
           :prefix-icon="useRenderIcon(Iphone)"
         />
       </el-form-item>
@@ -60,7 +63,7 @@ function onBack() {
           <el-input
             v-model="ruleForm.verifyCode"
             clearable
-            placeholder="短信验证码"
+            :placeholder="t('login.pureSmsVerifyCode')"
             :prefix-icon="useRenderIcon('ri:shield-keyhole-line')"
           />
           <el-button
@@ -68,7 +71,11 @@ function onBack() {
             class="ml-2"
             @click="useVerifyCode().start(ruleFormRef, 'phone')"
           >
-            {{ text.length > 0 ? text + "秒后重新获取" : "获取验证码" }}
+            {{
+              text.length > 0
+                ? text + t("login.pureInfo")
+                : t("login.pureGetVerifyCode")
+            }}
           </el-button>
         </div>
       </el-form-item>
@@ -83,7 +90,7 @@ function onBack() {
           :loading="loading"
           @click="onLogin(ruleFormRef)"
         >
-          登录
+          {{ t("login.pureLogin") }}
         </el-button>
       </el-form-item>
     </Motion>
@@ -91,7 +98,7 @@ function onBack() {
     <Motion :delay="200">
       <el-form-item>
         <el-button class="w-full" size="default" @click="onBack">
-          返回
+          {{ t("login.pureBack") }}
         </el-button>
       </el-form-item>
     </Motion>

@@ -1,31 +1,32 @@
+import { $t } from "@/plugins/i18n";
 
 const operates = [
   {
-    title: "手机登录"
+    title: $t("login.purePhoneLogin")
   },
   {
-    title: "二维码登录"
+    title: $t("login.pureQRCodeLogin")
   },
   {
-    title: "注册"
+    title: $t("login.pureRegister")
   }
 ];
 
 const thirdParty = [
   {
-    title: "微信登录",
+    title: $t("login.pureWeChatLogin"),
     icon: "wechat"
   },
   {
-    title: "支付宝登录",
+    title: $t("login.pureAlipayLogin"),
     icon: "alipay"
   },
   {
-    title: "QQ登录",
+    title: $t("login.pureQQLogin"),
     icon: "qq"
   },
   {
-    title: "微博登录",
+    title: $t("login.pureWeiBoLogin"),
     icon: "weibo"
   }
 ];

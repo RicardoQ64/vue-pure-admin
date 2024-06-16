@@ -2,7 +2,9 @@ import "vxe-table/lib/style.css";
 // import "xe-utils";
 // import XEUtils from "xe-utils";
 import type { App } from "vue";
+// import { i18n } from "@/plugins/i18n";
 // import zh from "vxe-table/lib/locale/lang/zh-CN";
+// import en from "vxe-table/lib/locale/lang/en-US";
 
 import {
   // 全局对象

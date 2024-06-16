@@ -1,3 +1,4 @@
+// https://github.com/localForage/localForage/blob/master/typings/localforage.d.ts
 
 interface LocalForageDbInstanceOptions {
   name?: string;

@@ -1,4 +1,5 @@
 export interface iconType {
+  // iconify (https://docs.iconify.design/icon-components/vue/#properties)
   inline?: boolean;
   width?: string | number;
   height?: string | number;

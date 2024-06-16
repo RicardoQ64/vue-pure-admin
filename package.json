@@ -1,23 +1,50 @@
 {
-  "name": "admin-main",
+  "name": "vue-pure-admin",
   "version": "5.7.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "cross-env --max_old_space_size=4096 vite",
-    "serve": "npm dev",
-    "build": "rimraf dist && cross-env NODE_OPTIONS=--max-old-space-size=8192 vite build && generate-version-file",
-    "build:staging": "rimraf dist && cross-env vite build --mode staging",
-    "report": "rimraf dist && cross-env vite build",
+    "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
+    "serve": "pnpm dev",
+    "build": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build && generate-version-file",
+    "build:staging": "rimraf dist && vite build --mode staging",
+    "report": "rimraf dist && vite build",
     "preview": "vite preview",
-    "preview:build": "npm build && vite preview",
+    "preview:build": "pnpm build && vite preview",
     "typecheck": "tsc --noEmit && vue-tsc --noEmit --skipLibCheck",
     "svgo": "svgo -f . -r",
-    "clean:cache": "rimraf .eslintcache && rimraf npm-lock.yaml && rimraf node_modules && npm store prune && npm install",
+    "clean:cache": "rimraf .eslintcache && rimraf pnpm-lock.yaml && rimraf node_modules && pnpm store prune && pnpm install",
     "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock,build}/**/*.{vue,js,ts,tsx}\" --fix",
     "lint:prettier": "prettier --write  \"src/**/*.{js,ts,json,tsx,css,scss,vue,html,md}\"",
     "lint:stylelint": "stylelint --cache --fix \"**/*.{html,vue,css,scss}\" --cache-location node_modules/.cache/stylelint/",
-    "lint": "npm lint:eslint && npm lint:prettier && npm lint:stylelint"
+    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
+    "prepare": "husky",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "keywords": [
+    "vue-pure-admin",
+    "element-plus",
+    "tailwindcss",
+    "pure-admin",
+    "typescript",
+    "pinia",
+    "vue3",
+    "vite",
+    "esm"
+  ],
+  "homepage": "https://github.com/pure-admin/vue-pure-admin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pure-admin/vue-pure-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pure-admin/vue-pure-admin/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "xiaoxian521",
+    "email": "pureadmin@163.com",
+    "url": "https://github.com/xiaoxian521"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -65,7 +92,7 @@
     "v3-infinite-loading": "^1.3.1",
     "version-rocket": "^1.7.1",
     "vue": "^3.4.27",
-    "vue-demi": "^0.14.6",
+    "vue-i18n": "^9.13.1",
     "vue-json-pretty": "^2.4.0",
     "vue-pdf-embed": "^2.0.4",
     "vue-router": "^4.3.3",
@@ -78,16 +105,19 @@
     "vuedraggable": "^4.1.0",
     "vxe-table": "4.6.17",
     "wavesurfer.js": "^7.7.15",
-    "xe-utils": "^3.5.27",
     "xgplayer": "^3.0.18",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@commitlint/types": "^19.0.3",
     "@eslint/js": "^9.4.0",
     "@faker-js/faker": "^8.4.1",
     "@iconify-icons/ep": "^1.2.12",
     "@iconify-icons/ri": "^1.2.10",
     "@iconify/vue": "^4.1.2",
+    "@intlify/unplugin-vue-i18n": "^4.0.0",
     "@pureadmin/theme": "^3.2.0",
     "@types/dagre": "^0.7.52",
     "@types/gradient-string": "^1.1.6",
@@ -104,7 +134,6 @@
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "autoprefixer": "^10.4.19",
     "boxen": "^7.1.1",
-    "cross-env": "7.0.3",
     "cssnano": "^7.0.2",
     "dagre": "^0.8.5",
     "eslint": "^9.4.0",
@@ -113,6 +142,8 @@
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-vue": "^9.26.0",
     "gradient-string": "^2.0.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.7",
     "postcss": "^8.4.38",
     "postcss-html": "^1.7.0",
     "postcss-import": "^16.1.0",
@@ -142,9 +173,9 @@
   },
   "engines": {
     "node": "^18.18.0 || ^20.9.0 || >=21.1.0",
-    "npm": ">=9"
+    "pnpm": ">=9"
   },
-  "npm": {
+  "pnpm": {
     "allowedDeprecatedVersions": {
       "are-we-there-yet": "*",
       "sourcemap-codec": "*",

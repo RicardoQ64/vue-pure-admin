@@ -33,6 +33,10 @@ const tabsList = [
   {
     label: "Remix Icon",
     name: "ri:"
+  },
+  {
+    label: "Font Awesome 5 Solid",
+    name: "fa-solid:"
   }
 ];
 
