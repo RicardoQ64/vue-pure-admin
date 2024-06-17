@@ -8,99 +8,27 @@ import type { multipleScopeVarsOptions } from "@pureadmin/theme";
 const themeColors = {
   /* 亮白色 */
   light: {
-    subMenuActiveText: "#000000d9",
+    subMenuActiveText: "#1677ff",
     menuBg: "#fff",
     menuHover: "#f6f6f6",
     subMenuBg: "#fff",
-    subMenuActiveBg: "#e0ebf6",
-    menuText: "rgb(0 0 0 / 60%)",
+    subMenuActiveBg: "#f6f6f6",
+    menuText: "#333",
     sidebarLogo: "#fff",
-    menuTitleHover: "#000",
-    menuActiveBefore: "#4091f7"
+    menuTitleHover: "#1677ff",
+    menuActiveBefore: "#1677ff"
   },
   /* 道奇蓝 */
   default: {
     subMenuActiveText: "#fff",
     menuBg: "#001529",
     menuHover: "rgb(64 145 247 / 15%)",
-    subMenuBg: "#0f0303",
-    subMenuActiveBg: "#4091f7",
-    menuText: "rgb(254 254 254 / 65%)",
-    sidebarLogo: "#002140",
+    subMenuBg: "#000c17",
+    subMenuActiveBg: "#1677ff",
+    menuText: "rgb(254 254 254 / 75%)",
+    sidebarLogo: "#001529",
     menuTitleHover: "#fff",
-    menuActiveBefore: "#4091f7"
-  },
-  /* 深紫罗兰色 */
-  saucePurple: {
-    subMenuActiveText: "#fff",
-    menuBg: "#130824",
-    menuHover: "rgb(105 58 201 / 15%)",
-    subMenuBg: "#000",
-    subMenuActiveBg: "#693ac9",
-    menuText: "#7a80b4",
-    sidebarLogo: "#1f0c38",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#693ac9"
-  },
-  /* 深粉色 */
-  pink: {
-    subMenuActiveText: "#fff",
-    menuBg: "#28081a",
-    menuHover: "rgb(216 68 147 / 15%)",
-    subMenuBg: "#000",
-    subMenuActiveBg: "#d84493",
-    menuText: "#7a80b4",
-    sidebarLogo: "#3f0d29",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#d84493"
-  },
-  /* 猩红色 */
-  dusk: {
-    subMenuActiveText: "#fff",
-    menuBg: "#2a0608",
-    menuHover: "rgb(225 60 57 / 15%)",
-    subMenuBg: "#000",
-    subMenuActiveBg: "#e13c39",
-    menuText: "rgb(254 254 254 / 65.1%)",
-    sidebarLogo: "#42090c",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#e13c39"
-  },
-  /* 橙红色 */
-  volcano: {
-    subMenuActiveText: "#fff",
-    menuBg: "#2b0e05",
-    menuHover: "rgb(232 95 51 / 15%)",
-    subMenuBg: "#0f0603",
-    subMenuActiveBg: "#e85f33",
-    menuText: "rgb(254 254 254 / 65%)",
-    sidebarLogo: "#441708",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#e85f33"
-  },
-  /* 绿宝石 */
-  mingQing: {
-    subMenuActiveText: "#fff",
-    menuBg: "#032121",
-    menuHover: "rgb(89 191 193 / 15%)",
-    subMenuBg: "#000",
-    subMenuActiveBg: "#59bfc1",
-    menuText: "#7a80b4",
-    sidebarLogo: "#053434",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#59bfc1"
-  },
-  /* 酸橙绿 */
-  auroraGreen: {
-    subMenuActiveText: "#fff",
-    menuBg: "#0b1e15",
-    menuHover: "rgb(96 172 128 / 15%)",
-    subMenuBg: "#000",
-    subMenuActiveBg: "#60ac80",
-    menuText: "#7a80b4",
-    sidebarLogo: "#112f21",
-    menuTitleHover: "#fff",
-    menuActiveBefore: "#60ac80"
+    menuActiveBefore: "#1677ff"
   }
 };
 

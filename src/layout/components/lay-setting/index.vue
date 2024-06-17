@@ -144,32 +144,6 @@ function setFalse(Doms): any {
   });
 }
 
-/** 页宽 */
-const stretchTypeOptions = computed<Array<OptionsType>>(() => {
-  return [
-    {
-      label: "固定",
-      tip: "紧凑页面，轻松找到所需信息",
-      value: "fixed"
-    },
-    {
-      label: "自定义",
-      tip: "最小1280、最大1600",
-      value: "custom"
-    }
-  ];
-});
-
-const setStretch = value => {
-  settings.stretch = value;
-  storageConfigureChange("stretch", value);
-};
-
-const stretchTypeChange = ({ option }) => {
-  const { value } = option;
-  value === "custom" ? setStretch(1440) : setStretch(false);
-};
-
 /** 主题色 激活选择项 */
 const getThemeColor = computed(() => {
   return current => {
@@ -190,7 +164,7 @@ const getThemeColor = computed(() => {
 });
 
 const pClass = computed(() => {
-  return ["mb-[12px]", "font-medium", "text-sm", "dark:text-white"];
+  return ["mb-[12px]", "font-medium", "dark:text-white"];
 });
 
 const themeOptions = computed<Array<OptionsType>>(() => {
@@ -228,7 +202,7 @@ const markOptions = computed<Array<OptionsType>>(() => {
     },
     {
       label: "气泡",
-      value: "bubble"
+      value: "chrome"
     }
   ];
 });
@@ -330,7 +304,7 @@ onUnmounted(() => removeMatchMedia);
         "
       />
 
-      <p :class="['mt-5', pClass]">主题色</p>
+      <p :class="['mt-6', pClass]">主题色</p>
       <ul class="theme-color">
         <li
           v-for="(item, index) in themeColors"
@@ -349,7 +323,7 @@ onUnmounted(() => removeMatchMedia);
         </li>
       </ul>
 
-      <p :class="['mt-5', pClass]">导航模式</p>
+      <p :class="['mt-6', pClass]">导航模式</p>
       <ul class="pure-theme">
         <li
           ref="verticalRef"
@@ -368,7 +342,7 @@ onUnmounted(() => removeMatchMedia);
           <div />
           <div />
         </li>
-        <li
+        <!-- <li
           v-if="device !== 'mobile'"
           ref="mixRef"
           :class="layoutTheme.layout === 'mix' ? 'is-select' : ''"
@@ -376,54 +350,10 @@ onUnmounted(() => removeMatchMedia);
         >
           <div />
           <div />
-        </li>
+        </li> -->
       </ul>
 
-      <span v-if="useAppStoreHook().getViewportWidth > 1280">
-        <p :class="['mt-5', pClass]">页宽</p>
-        <Segmented
-          resize
-          class="mb-2 select-none"
-          :modelValue="isNumber(settings.stretch) ? 1 : 0"
-          :options="stretchTypeOptions"
-          @change="stretchTypeChange"
-        />
-        <el-input-number
-          v-if="isNumber(settings.stretch)"
-          v-model="settings.stretch as number"
-          :min="1280"
-          :max="1600"
-          controls-position="right"
-          @change="value => setStretch(value)"
-        />
-        <button
-          v-else
-          v-ripple="{ class: 'text-gray-300' }"
-          class="bg-transparent flex-c w-full h-20 rounded-md border border-[var(--pure-border-color)]"
-          @click="setStretch(!settings.stretch)"
-        >
-          <div
-            class="flex-bc transition-all duration-300"
-            :class="[settings.stretch ? 'w-[24%]' : 'w-[50%]']"
-            style="color: var(--el-color-primary)"
-          >
-            <IconifyIconOffline
-              :icon="settings.stretch ? RightArrow : LeftArrow"
-              height="20"
-            />
-            <div
-              class="flex-grow border-b border-dashed"
-              style="border-color: var(--el-color-primary)"
-            />
-            <IconifyIconOffline
-              :icon="settings.stretch ? LeftArrow : RightArrow"
-              height="20"
-            />
-          </div>
-        </button>
-      </span>
-
-      <p :class="['mt-4', pClass]">页签风格</p>
+      <p :class="['mt-6', pClass]">页签风格</p>
       <Segmented
         resize
         class="select-none"
@@ -432,11 +362,9 @@ onUnmounted(() => removeMatchMedia);
         @change="onChange"
       />
 
-      <p class="mt-5 font-medium text-sm dark:text-white">
-        界面显示
-      </p>
+      <p :class="['mt-6', pClass]">界面显示</p>
       <ul class="setting">
-        <li>
+        <!-- <li>
           <span class="dark:text-white">灰色模式</span>
           <el-switch
             v-model="settings.greyVal"
@@ -455,7 +383,7 @@ onUnmounted(() => removeMatchMedia);
             inactive-text="关"
             @change="weekChange"
           />
-        </li>
+        </li> -->
         <li>
           <span class="dark:text-white">隐藏标签页</span>
           <el-switch
@@ -489,9 +417,7 @@ onUnmounted(() => removeMatchMedia);
           />
         </li>
         <li>
-          <span class="dark:text-white">
-            页签持久化
-          </span>
+          <span class="dark:text-white"> 页签持久化 </span>
           <el-switch
             v-model="settings.multiTagsCache"
             inline-prompt

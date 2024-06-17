@@ -25,7 +25,7 @@ export const useEpThemeStore = defineStore({
     /** 用于mix导航模式下hamburger-svg的fill属性 */
     fill(state) {
       if (state.epTheme === "light") {
-        return "#409eff";
+        return "#1677ff";
       } else {
         return "#fff";
       }

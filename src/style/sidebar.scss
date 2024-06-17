@@ -458,7 +458,7 @@
       align-items: center;
       justify-content: flex-end;
       min-width: 340px;
-      color: $subMenuActiveText;
+      color: $menuText;
 
       /* 搜索 */
       .search-container,
@@ -479,14 +479,14 @@
 
       .dropdown-badge {
         height: 48px;
-        color: $subMenuActiveText;
+        color: $menuText;
       }
 
       .globalization {
         width: 40px;
         height: 48px;
         padding: 11px;
-        color: $subMenuActiveText;
+        color: $menuText;
         cursor: pointer;
         outline: none;
       }
@@ -497,7 +497,7 @@
         justify-content: space-around;
         height: 48px;
         padding: 10px;
-        color: $subMenuActiveText;
+        color: $menuText;
         cursor: pointer;
 
         p {

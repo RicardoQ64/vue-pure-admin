@@ -19,7 +19,7 @@ import {
 
 import ExitFullscreen from "@iconify-icons/ri/fullscreen-exit-fill";
 import Fullscreen from "@iconify-icons/ri/fullscreen-fill";
-import ArrowDown from "@iconify-icons/ri/arrow-down-s-line";
+import More2Line from "@iconify-icons/ri/more-2-line";
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
 import ArrowLeftSLine from "@iconify-icons/ri/arrow-left-s-line";
 
@@ -658,7 +658,10 @@ onBeforeUnmount(() => {
       @command="handleCommand"
     >
       <span class="arrow-down">
-        <IconifyIconOffline :icon="ArrowDown" class="dark:text-white" />
+        <IconifyIconOffline
+          :icon="More2Line"
+          class="dark:text-white h-[18px]"
+        />
       </span>
       <template #dropdown>
         <el-dropdown-menu>

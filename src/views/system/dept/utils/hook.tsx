@@ -128,9 +128,6 @@ export function useDept() {
         const FormRef = formRef.value.getRef();
         const curData = options.props.formInline as FormItemProps;
         function chores() {
-          message(`您${title}了部门名称为${curData.name}的这条数据`, {
-            type: "success"
-          });
           done(); // 关闭弹框
           onSearch(); // 刷新表格数据
         }
@@ -139,8 +136,10 @@ export function useDept() {
             console.log("curData", curData);
             // 表单规则校验通过
             if (title === "新增") {
+              setTimeout(() => {
+                chores()
+              }, 300);
               // 实际开发先调用新增接口，再进行下面操作
-              chores();
             } else {
               // 实际开发先调用修改接口，再进行下面操作
               chores();

@@ -1,6 +1,6 @@
 {
   "Version": "5.7.0",
-  "Title": "PureAdmin",
+  "Title": "综合管理平台",
   "FixedHeader": true,
   "HiddenSideBar": false,
   "MultiTagsCache": false,
@@ -16,7 +16,7 @@
   "HideFooter": false,
   "Stretch": false,
   "SidebarStatus": true,
-  "EpThemeColor": "#409EFF",
+  "EpThemeColor": "#1677ff",
   "ShowLogo": true,
   "ShowModel": "smart",
   "MenuArrowIconNoTransition": false,

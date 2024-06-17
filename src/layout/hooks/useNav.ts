@@ -51,22 +51,6 @@ export function useNav() {
       : useUserStoreHook()?.nickname;
   });
 
-  /** 设置国际化选中后的样式 */
-  const getDropdownItemStyle = computed(() => {
-    return (locale, t) => {
-      return {
-        background: locale === t ? useEpThemeStoreHook().epThemeColor : "",
-        color: locale === t ? "#f4f4f5" : "#000"
-      };
-    };
-  });
-
-  const getDropdownItemClass = computed(() => {
-    return (locale, t) => {
-      return locale === t ? "" : "dark:hover:!text-primary";
-    };
-  });
-
   const avatarsStyle = computed(() => {
     return username.value ? { marginRight: "10px" } : "";
   });
@@ -173,8 +157,6 @@ export function useNav() {
     userAvatar,
     avatarsStyle,
     tooltipEffect,
-    toAccountSettings,
-    getDropdownItemStyle,
-    getDropdownItemClass
+    toAccountSettings
   };
 }

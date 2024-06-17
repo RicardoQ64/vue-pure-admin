@@ -82,6 +82,7 @@ onBeforeUnmount(() => {
             placement: 'left-start',
             zIndex: 41000
           }"
+          class="w-[100%]"
           type="danger"
           text
           bg
